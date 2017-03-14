@@ -1,0 +1,24 @@
+#MARCH 14 NOTES
+
+import csv
+from operator import itemgetter
+
+file = open("chilib_visitors_2016", 'r')
+reader = csv.reader(file, delimiter = "\t")
+
+lib_data = []
+for line in reader:
+    lib_data.append(line)
+print(lib_data)
+
+headers = lib_data[0]
+lib_data = lib_data[1:]
+print(headers)
+print(lib_data)
+
+for i in range(len(lib_data)):
+    lib_data[i][-1] = int(lib_data[i][-1])
+
+lib_data.sort(key= itemgetter(-1))
+print(lib_data)
+print(lib_data[-3:])
