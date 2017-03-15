@@ -6,6 +6,7 @@ from operator import itemgetter
 file = open("chilib_visitors_2016", 'r')
 reader = csv.reader(file, delimiter = "\t")
 
+'''
 lib_data = []
 for line in reader:
     lib_data.append(line)
@@ -22,3 +23,41 @@ for i in range(len(lib_data)):
 lib_data.sort(key= itemgetter(-1))
 print(lib_data)
 print(lib_data[-3:])
+
+
+
+
+file = open("chilib_vistors_2016")
+reader = csv.reader(file, delimiter='\t')
+'''
+
+library_list = []
+places = []
+for line in reader:
+    library_list.append(line)
+
+headers = library_list[0][1]
+library_list = library_list[1:]
+for i in range(len(library_list)):
+    library_list[i].remove(library_list[i][0])
+
+print(library_list)
+print(headers)
+
+
+months = []
+for month in range(len(library_list[0])):
+    total = 0
+    for location in range(len(library_list)):
+        total += int(library_list[location][month])
+    months.append(total)
+
+months.remove(months[12])
+
+print(file)
+
+three_most = []
+
+
+
+file.close()

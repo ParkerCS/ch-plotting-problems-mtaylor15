@@ -18,21 +18,36 @@ def split_line(line):
     return re.findall('[A-Za-z0-9]+(?:\'[A-Za-a0-9]+)?', line)
 
 
-library_list = []
+
 file = open("chilib_vistors_2016")
 reader = csv.reader(file, delimiter='\t')
+
+library_list = []
+places = []
 for line in reader:
     library_list.append(line)
 
-headers = library_list[0]
+headers = library_list[0][1]
 library_list = library_list[1:]
+for i in range(len(library_list)):
+    library_list[i].remove(library_list[i][0])
 
-print(file)
-
-for line in file:
-    words = split_line(line)
-    library_list.append(words)
 print(library_list)
 
 
+months = []
+for month in range(len(library_list[0])):
+    total = 0
+    for location in range(len(library_list)):
+        total += int(library_list[location][month])
+    months.append(total)
+
+months.remove(months[12])
+
+print(file)
+
+
+three_most = []
+
+file.close()
 
